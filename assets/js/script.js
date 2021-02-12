@@ -2,6 +2,9 @@
 const qs = (element)=>document.querySelector(element);
 const qsAll = (element)=>document.querySelectorAll(element);
 
+//variável de auxílio
+let modalQt = 1;
+
 pizzaJson.map((item, index) => {
     let pizzaItem = qs('.models .pizza-item').cloneNode(true);
 
@@ -20,11 +23,26 @@ pizzaJson.map((item, index) => {
 
         let key = event.target.closest('.pizza-item').getAttribute('data-key');
 
+        modalQt = 1;
+
         qs('.pizzaBig img').src = pizzaJson[key].img;
 
         qs('.pizzaInfo h1').innerHTML = pizzaJson[key].name;
 
         qs('.pizzaInfo--desc').innerHTML = pizzaJson[key].description;
+
+        qs('.pizzaInfo--size.selected').classList.remove('selected');
+
+        qsAll('.pizzaInfo--size').forEach((size, sizeIndex) => {
+            if ( sizeIndex == 2 ) {
+                size.classList.add('selected');
+            }
+            size.querySelector('span').innerHTML = pizzaJson[key].sizes[sizeIndex];
+        });
+
+        qs('.pizzaInfo--qnt').innerHTML = modalQt;
+
+        qs('.pizzaInfo--actualPrice').innerHTML = `R$ ${pizzaJson[key].price.toFixed(2)}`;
         
         qs('.pizzaWindowArea').style.opacity = 0;
 
