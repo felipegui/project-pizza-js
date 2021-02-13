@@ -59,7 +59,7 @@ pizzaJson.map((item, index) => {
 });
 
 //Eventos do Modal...
-//Fechar o modal
+//Function para fechar o modal
 function closeModal() {
     qs('.pizzaWindowArea').style.opacity = 0;
 
@@ -67,7 +67,18 @@ function closeModal() {
         qs('.pizzaWindowArea').style.display = 'none';
     }, 500);
 }
-
 qsAll('.pizzaInfo--cancelButton, .pizzaInfo--cancelMobileButton').forEach((item)=> {
     item.addEventListener('click', closeModal);
+});
+
+//Button - +
+qs('.pizzaInfo--qntmenos').addEventListener('click', ()=>{
+    if ( modalQt > 1 ) {
+        modalQt --;
+        qs('.pizzaInfo--qnt').innerHTML = modalQt;
+    }
+});
+qs('.pizzaInfo--qntmais').addEventListener('click', ()=>{
+    modalQt ++;
+    qs('.pizzaInfo--qnt').innerHTML = modalQt;
 });

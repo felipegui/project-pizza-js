@@ -330,8 +330,13 @@ pizzaInfo--size.selected span {
     background-color: #35AF4A;
 }
 
+@media ( max-width: 1000px ) {
+    .pizza-area {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
 
-@media ( max-width: 100px ) {
+@media ( max-width: 840px ) {
     body {
         flex-direction: column;
     }
