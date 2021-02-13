@@ -82,3 +82,11 @@ qs('.pizzaInfo--qntmais').addEventListener('click', ()=>{
     modalQt ++;
     qs('.pizzaInfo--qnt').innerHTML = modalQt;
 });
+
+//Button, selected sizes pizzas
+qsAll('.pizzaInfo--size').forEach((size, sizeIndex)=>{
+    size.addEventListener('click', (e)=>{
+        qs('.pizzaInfo--size.selected').classList.remove('selected');
+        size.classList.add('selected');
+    });
+});
