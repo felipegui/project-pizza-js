@@ -2,8 +2,14 @@
 const qs = (element)=>document.querySelector(element);
 const qsAll = (element)=>document.querySelectorAll(element);
 
-//variável de auxílio
+//variável contadora de pizzas
 let modalQt = 1;
+
+//array do carrinho, começa vazio...
+let cart = [];
+
+//variável que contém as informações das pizzas(data-key)
+let modalKey = 0;
 
 //Listagem das pizzas
 pizzaJson.map((item, index) => {
@@ -24,6 +30,8 @@ pizzaJson.map((item, index) => {
         event.preventDefault();
 
         let key = event.target.closest('.pizza-item').getAttribute('data-key');
+
+        modalKey = key;
 
         modalQt = 1;
 
@@ -89,4 +97,21 @@ qsAll('.pizzaInfo--size').forEach((size, sizeIndex)=>{
         qs('.pizzaInfo--size.selected').classList.remove('selected');
         size.classList.add('selected');
     });
+});
+
+//button add to cart
+//para saber o data-key(pizzas) clicado...
+qs('.pizzaInfo--addButton').addEventListener('click', ()=>{
+    //Pegar o tamanho da pizza
+    let size = parseInt(qs('.pizzaInfo--size.selected').getAttribute('data-key'));
+    
+    //add ao carrinho
+    cart.push({
+        id: pizzaJson[modalKey].id,
+        size,
+        qt: modalQt
+    });
+
+    //Apos add ao carrinho, fechar o modal
+    closeModal();
 });
