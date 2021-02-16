@@ -104,14 +104,26 @@ qsAll('.pizzaInfo--size').forEach((size, sizeIndex)=>{
 qs('.pizzaInfo--addButton').addEventListener('click', ()=>{
     //Pegar o tamanho da pizza
     let size = parseInt(qs('.pizzaInfo--size.selected').getAttribute('data-key'));
-    
-    //add ao carrinho
-    cart.push({
-        id: pizzaJson[modalKey].id,
-        size,
-        qt: modalQt
-    });
 
+    //identificador de pizzas
+    let identifier = "Pizza: "+pizzaJson[modalKey].id +" Tamanho: "+size;
+
+    //verificador de pizzas
+    let key = cart.findIndex((item)=>{
+        return item.identifier == identifier;
+    });
+    if ( key > -1 ) {
+        cart[key].qt += modalQt;
+    } else {
+        //add ao carrinho
+        cart.push({
+            identifier,
+            id: pizzaJson[modalKey].id,
+            size,
+            qt: modalQt
+        });
+    }
+    
     //Apos add ao carrinho, fechar o modal
     closeModal();
 });
