@@ -123,7 +123,23 @@ qs('.pizzaInfo--addButton').addEventListener('click', ()=>{
             qt: modalQt
         });
     }
-    
+    //Atualizar o carrinho
+    updateCart();
     //Apos add ao carrinho, fechar o modal
     closeModal();
 });
+
+//Exibi o carrinho quando alguma coisa é add
+//condição para o meu aside aparecer na tela (function)
+function updateCart() {
+    if ( cart.length > 0 ) {
+        qs('aside').classList.add('show');
+
+        for( let i in cart ) {
+            let pizzaItem = pizzaJson.find((item)=>item.id == cart[i].id);
+            console.log(pizzaItem);
+        }
+    } else {
+        qs('aside').classList.remove('show');
+    }
+}

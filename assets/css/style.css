@@ -42,14 +42,14 @@ header {
 }
 
 aside {
-    background-color: #9CCBE6;
+    background-color: #A9A9A9;
     width: 0vw;
     font-family: 'Hepta Slab', Helvetica, Arial;
     transition: all ease .2s;
     overflow-x: hidden;
 }
 aside.show {
-    width: 30vw;
+    width: 25vw;
 }
 .cart--area {
     padding: 20px;
@@ -301,7 +301,7 @@ pizzaInfo--size.selected span {
 }
 .cart--totalitem {
     padding: 15px 0;
-    border-top: 1px solid #79B9DD;
+    border-top: 1px solid #696969;
     color: #315970;
     display: flex;
     justify-content: space-between;
@@ -318,16 +318,16 @@ pizzaInfo--size.selected span {
 .cart--finalizar {
     padding: 20px 30px;
     border-radius: 20px;
-    background-color: #48D05F;
+    background-color: #DAA520;
     color: #FFF;
     cursor: pointer;
     text-align: center;
     margin-top: 20px;
-    border: 2px solid #63F77C;
+    border: 2px solid #B8860B;
     transition: all ease .2s;
 }
 .cart--finalizar:hover {
-    background-color: #35AF4A;
+    background-color: #B8860B;
 }
 
 @media ( max-width: 1000px ) {
