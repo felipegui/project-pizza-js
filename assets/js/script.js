@@ -135,9 +135,41 @@ function updateCart() {
     if ( cart.length > 0 ) {
         qs('aside').classList.add('show');
 
+        qs('.cart').innerHTML = '';
+
         for( let i in cart ) {
             let pizzaItem = pizzaJson.find((item)=>item.id == cart[i].id);
-            console.log(pizzaItem);
+            
+            //Clonar o carrinho e preencher as informações
+            let cartItem = qs('.models .cart--item').cloneNode(true);
+
+            //Preenchendo a imagem no carrinho
+            cartItem.querySelector('img').src = pizzaItem.img;
+
+            let pizzaSizeName;
+            switch(cart[i].size) {
+                case 0:
+                    pizzaSizeName = 'Pequena';
+                    break;
+                case 1:
+                    pizzaSizeName = 'Média';
+                    break;
+                case 2:
+                    pizzaSizeName = 'Grande';
+                    break;
+            }
+
+            //Uma concatenação usando template string entre o nome da pizza + o seu tamanho *
+            let pizzaName = `${pizzaItem.name} (${pizzaSizeName})`;
+
+            //Preenchendo o nome da pizza *
+            cartItem.querySelector('.cart--item-name').innerHTML = pizzaName;
+
+            //Preenchendo a quantidade ao carrinho
+            cartItem.querySelector('.cart--item--qnt').innerHTML = cart[i].qt;
+
+            //Add os itens ao carrinho de fato
+            qs('.cart').append(cartItem);
         }
     } else {
         qs('aside').classList.remove('show');
