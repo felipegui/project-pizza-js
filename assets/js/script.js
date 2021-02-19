@@ -129,9 +129,24 @@ qs('.pizzaInfo--addButton').addEventListener('click', ()=>{
     closeModal();
 });
 
+//Exibir o aside na parte Mobile
+qs('.menu-openner').addEventListener('click', ()=>{
+    if ( cart.length > 0 ) {
+        qs('aside').style.left = '0';
+    }
+});
+
+//Fechar o aside na parte do Mobile
+qs('.menu-closer').addEventListener('click', ()=>{
+    qs('aside').style.left = '100vw';
+});
+
 //Exibi o carrinho quando alguma coisa é add
 //condição para o meu aside aparecer na tela (function)
 function updateCart() {
+    //Mostra a quantidade de pizzas diferentes, carrinho (Parte Mobile)
+    qs('.menu-openner span').innerHTML = cart.length;
+
     if ( cart.length > 0 ) {
         qs('aside').classList.add('show');
 
@@ -209,6 +224,10 @@ function updateCart() {
 
         qs('.total span:last-child').innerHTML = `R$ ${total.toFixed(2)}`;
     } else {
+        //condição para fechar o aside no desktop
         qs('aside').classList.remove('show');
+
+        //condição para fechar o aside no mobile
+        qs('aside').style.left = '100vw';
     }
 }
